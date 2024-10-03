@@ -3,100 +3,97 @@ Build a program that asks the user to enter the length and width of a room, in m
 then prints the room's area in both square meters and square feet.
 
 Note: 1 square meter == 10.7639 square feet
-'''
 
-
-def room_size(length_meters, width_meters):
-    area_meters = float(length_meters) * float(width_meters)
-    area_feet = round(area_meters * 10.7639, 2)
-    print(f'The area in square meters is {area_meters}')
-    print(f'The area in square feet is {area_feet}')
-
-
-print("Length in meters: ")
-length_meters = input()
-
-print("Width in meters: ")
-width_meters = input()
-
-room_size(length_meters, width_meters)
-
-
-'''
 Further Exploration
 
 Modify the program to let the user specify the measurement type 
 (meters or feet). Compute the area accordingly and print it and 
 its conversion in parentheses.
+
 '''
+
+SQUARE_FEET_IN_A_SQUARE_METER = 10.7639
+
 print("Let's calculate the size of your room.")
-
-
-def valid_unit(input):
-    return input and input[0] in ['m', 'f']
 
 def get_unit():
     print("Measure in feet or meters? (f/m)")
     unit = input().lower()
 
-    while not valid_unit(unit):
-        print("Enter unit: (f)eet or (m)eters.")
+    while not is_valid_unit(unit):
+        print("Must be valid unit: m/f")
         unit = input().lower()
+    
+    match unit:
+        case 'm':
+            return 'meters'
+        case 'f':
+            return 'feet'
+        
 
-    if unit[0] == 'm':
-        return 'meters'
-    else:
-        return 'feet'
+def is_valid_unit(unit):
+    return unit and unit[0] in ['m', 'f']
 
-
-def valid_measurement(input):
-    try:
-        float(input)
-    except ValueError:
+def get_measurement(side, unit):
+    print(f"{side} of your room in {unit}: ")
+    measurement = input()
+    
+    while not is_measurement_valid(measurement):
         print("Enter a positive, non-zero number.")
-        return False
-    
-    return float(input) > 0
-
-def get_measurement(measure, unit):
-    measurement = input(f"Enter the {measure} of the room in {unit}: ")
-    
-    while not valid_measurement(measurement):
-        measurement = input("Is this text necessary?")
+        print(f"{side} of your room in {unit}: ")
+        measurement = input()
     
     return float(measurement)
 
+def is_measurement_valid(measurement):
+    try:
+        float(measurement)
+    except ValueError:
+        return False
+    
+    return float(measurement) > 0
 
-def calculate_area(length, width):
-    area = length * width
-    return area
+def calculate_area(length, width, unit):
+    match unit:
+        case 'meters':
+            area_meters = length * width
+            area_feet = area_meters * SQUARE_FEET_IN_A_SQUARE_METER
+            return area_feet, area_meters
+        case 'feet':
+            area_feet = length * width
+            area_meters = area_feet / SQUARE_FEET_IN_A_SQUARE_METER
+            return area_feet, area_meters
+    
+def display_area(area_feet, area_meters):
+    print(f'The area in square feet is {area_feet:.2f}')
+    print(f'The area in square meters is {area_meters:.2f}')
     
 
-# conversion factor from square feet to square meters
-SQ_FEET_TO_SQ_METERS = 10.7639
+def continue_measuring():
+    print("Measure another room?")
+    choice = input().lower()
 
-def convert(unit, area):
-    if unit == 'meters':
-        area *= SQ_FEET_TO_SQ_METERS
-        print('Converted area: ', area)   
-        return area
-    else:
-        return area
+    while not choice or choice.lower() not in ('y', 'n'):
+        print("Enter (y) or (n).")
+        choice = input().lower()
     
-
-def print_area(unit, area):
-    print(f"Room is {area:.2f} square {unit}.")
-
-
-
+    match choice:
+        case 'y':
+            return True
+        case 'n':
+            return False
 
 def main():
-    unit = get_unit()
-    length = get_measurement('length', unit)
-    width = get_measurement('width', unit)
+    continue_program = True
+    while continue_program:
+        unit = get_unit()
 
-    converted_area = convert(unit, calculate_area(length, width))
+        length = get_measurement('Length', unit)
+        width = get_measurement('Width', unit)
 
-    print_area(unit, converted_area)
-    
+        area_feet, area_meters = calculate_area(length, width, unit)
+
+        display_area(area_feet, area_meters)
+        
+        continue_program = continue_measuring()
 main()
