@@ -8,8 +8,14 @@ For instance, if the supplied number is 20, the result should be
 You may assume that the number passed in is an integer greater than 1.
 '''
 
-def multisum(num):
-    
+def multisum(integer):
+    sum = 0
+    for num in range(integer + 1):
+        if num % 3 == 0 or num % 5 == 0:
+            sum += num
+
+    return sum      
+        
 
 
 # These examples should all print True

@@ -48,5 +48,4 @@ Different regions adopted the Gregorian calendar at different times.
 Investigate when it was adopted in various countries and how that transition 
 was managed. Consider how this would impact the leap year calculation and 
 potentially adjust the solution based on the country of reference.
-
 '''
