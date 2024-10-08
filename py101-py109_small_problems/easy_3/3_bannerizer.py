@@ -104,4 +104,4 @@ def print_in_box(message, max_width):
         print(EMPTY_LINE)
         print(HORIZONTAL_RULE)
 
-print_in_box('To boldly go where no one has gone before.', 8)
+print_in_box('To boldly go where no one has gone before.', 20)
