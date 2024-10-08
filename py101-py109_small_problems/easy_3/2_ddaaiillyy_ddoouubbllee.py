@@ -3,15 +3,22 @@ that contains the value of the original string with all consecutive duplicate
 characters collapsed into a single character.
 '''
 
-def crunch(string):
-    string_elements = list(string)
-    singled_elements = []
+def crunch(text):
+    new_text = ''
+    previous_char = ''
 
-    
+    for char in text:
+        if char != previous_char:
+            new_text += char
+        previous_char = char
 
-    singled_string = ''.join(singled_elements)
+    return new_text
+
+
+
 
 # These examples should all print True
+print(crunch('abc') == 'abc')
 print(crunch('ddaaiillyy ddoouubbllee') == 'daily double')
 print(crunch('4444abcabccba') == '4abcabcba')
 print(crunch('ggggggggggggggg') == 'g')
