@@ -4,6 +4,17 @@ starting with a '1'. The length of the string should match
 the given integer.'''
 
 
+def stringy(positive_integer):
+    string = ''
+    for char in range(positive_integer):
+        if char % 2 == 0:
+            string += '1'
+        else:
+            string += '0'
+    print(string)
+    return string
+
+# ls 
 
 
 print(stringy(6) == "101010")           # True
