@@ -10,6 +10,7 @@ def crunch(text):
     for char in text:
         if char != previous_char:
             new_text += char
+            
         previous_char = char
 
     return new_text

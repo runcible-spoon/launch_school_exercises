@@ -15,6 +15,13 @@ def stringy(positive_integer):
     return string
 
 # ls 
+def stringy(size):
+    result = ""
+    for idx in range(size):
+        digit = '1' if idx % 2 == 0 else '0'
+        result += digit
+
+    return result
 
 
 print(stringy(6) == "101010")           # True
