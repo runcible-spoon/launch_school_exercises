@@ -15,30 +15,22 @@ def dms(angle):
     if angle == int(angle):
         return f"{angle}{DEGREE}00'00\""
     
-    #print('degrees: ', angle)
     
     degrees_rounded = int(angle)
-    #print('degrees: ', degrees_rounded)
 
     degree_remainder = angle - degrees_rounded
-    #print('degree remainder: ', degree_remainder)
 
     minutes = degree_remainder * 60
-    #print('minutes: ', minutes)
 
     minutes_rounded = int(minutes)
-    #print('minutes rounded: ', minutes_rounded)
 
     minutes_remainder = minutes - minutes_rounded
-    #print('minutes remainder: ', minutes_remainder)
 
     seconds = minutes_remainder * 60
-    #print('seconds :', seconds)
 
     seconds_rounded = int(seconds)
 
     angle = f"{degrees_rounded}{DEGREE}{minutes_rounded:02}'{seconds_rounded:02}\""
-    #print(angle)
 
     return angle or "0°00'00\""
 
