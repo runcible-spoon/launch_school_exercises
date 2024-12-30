@@ -17,17 +17,13 @@ def dms(angle):
     
     
     degrees_rounded = int(angle)
-
     degree_remainder = angle - degrees_rounded
 
     minutes = degree_remainder * 60
-
     minutes_rounded = int(minutes)
-
     minutes_remainder = minutes - minutes_rounded
 
     seconds = minutes_remainder * 60
-
     seconds_rounded = int(seconds)
 
     angle = f"{degrees_rounded}{DEGREE}{minutes_rounded:02}'{seconds_rounded:02}\""
