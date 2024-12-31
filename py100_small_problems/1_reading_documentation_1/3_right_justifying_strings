@@ -1,0 +1,15 @@
+# Use the Python documentation for the str class to determine which method 
+# can be used to right justify a str object.
+
+''' 
+str.rjust(width[, fillchar])
+
+    Return the string right justified in a string of length width. 
+    Padding is done using the specified fillchar (default is an ASCII space). 
+    The original string is returned if width is less than or equal to len(s).
+
+'''
+
+string = 'Hello, world!'
+
+print(string.rjust(100))

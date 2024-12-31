@@ -1,9 +1,9 @@
 '''
-Write a function that combines two lists passed as arguments and returns a 
-new list that contains all elements from both list arguments, with each 
+Write a function that combines two lists passed as arguments and returns a
+new list that contains all elements from both list arguments, with each
 element taken in alternation.
 
-You may assume that both input lists are non-empty, and that they have 
+You may assume that both input lists are non-empty, and that they have
 the same number of elements.
 '''
 
@@ -25,3 +25,7 @@ print(interleave(list1, list2) == expected)      # True
 '''Further Exploration
 
 Can you solve this problem using the zip function?'''
+def interleave(lst1, lst2):
+    return [ elem for sublist in zip(lst1, lst2) for elem in sublist ]
+
+print(interleave(list1, list2) == expected)
