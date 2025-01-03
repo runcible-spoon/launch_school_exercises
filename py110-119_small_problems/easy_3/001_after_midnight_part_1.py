@@ -11,7 +11,23 @@ Disregard Daylight Savings and Standard Time and other complications.
 '''
 
 def time_of_day(num):
+    if num == 0:
+        return "00:00"
 
+    elif num < 0:
+        while num < 0:
+            num += 1440
+
+    elif num > 0:
+        while num > 1440:
+            num -= 1440
+
+    hour_component = num // 60
+    minute_component = num % 60
+
+    output = f'{hour_component:02d}:{minute_component:02d}'
+
+    return output
 
 print(time_of_day(0) == "00:00")        # True
 print(time_of_day(-3) == "23:57")       # True
