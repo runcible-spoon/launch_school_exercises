@@ -28,9 +28,9 @@ def letter_percentages(string):
         else:
             percent_dict['neither'].append(char)
 
-    percent_dict['lowercase'] = str( f"{100 * (len(percent_dict['lowercase']) / len(string)):.2f}")
-    percent_dict['uppercase'] = str(f"{100 * (len(percent_dict['uppercase']) / len(string)):.2f}")
-    percent_dict['neither'] = str(f"{100 * (len(percent_dict['neither']) / len(string)):.2f}")
+    percent_dict['lowercase'] = f"{100 * (len(percent_dict['lowercase']) / len(string)):.2f}"
+    percent_dict['uppercase'] = f"{100 * (len(percent_dict['uppercase']) / len(string)):.2f}"
+    percent_dict['neither'] = f"{100 * (len(percent_dict['neither']) / len(string)):.2f}"
 
     return percent_dict
 
